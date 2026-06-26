@@ -29,15 +29,20 @@
     </div>
   </nav>
 
-  <section data-screen-label="히어로" style="position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 88px; background: #171A20 url('uploads/ing1.png') center center / cover no-repeat; overflow: hidden;">
-    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 18%, rgba(23,26,32,0) 40%, rgba(23,26,32,0.65) 100%);"></div>
-    <div style="position: relative; max-width: 880px;">
-      <div style="font-size: 14px; font-weight: 500; color: #ffffff; opacity: .68; margin-bottom: 22px; letter-spacing: .01em;">동네 사장님과 중소기업을 위한 마케팅 파트너</div>
-      <h1 style="font-size: clamp(36px,6.2vw,74px); font-weight: 600; line-height: 1.16; color: #ffffff; margin: 0 0 24px; letter-spacing: normal;">작은 기업의 큰 성장,<br>JYS마케팅이 함께합니다</h1>
-      <p style="font-size: clamp(16px,2vw,20px); line-height: 1.7; color: #ffffff; opacity: .82; margin: 0 auto 40px; max-width: 600px;">큰 예산 없이도 효과적인 마케팅.<br>기획부터 제작, 광고, 관리까지 한 번에 맡기세요.</p>
-      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-        <button onClick="{{ goContact }}" style="height: 50px; padding: 0 32px; background: var(--accent,#3E6AE1); color: #fff; font-size: 15px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #3257c5;">무료 상담 신청</button>
-        <button onClick="{{ goServices }}" style="height: 50px; padding: 0 32px; background: #ffffff; color: #171A20; font-size: 15px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #e9e9ea;">서비스 살펴보기</button>
+  <section data-screen-label="히어로" style="position: relative; min-height: 100vh; display: flex; align-items: center; padding: 140px clamp(24px,6vw,80px) 88px; background: #171A20; overflow: hidden;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: repeating-linear-gradient(135deg, #1c2027 0 14px, #171A20 14px 28px);"></div>
+    <div style="position: relative; max-width: 1180px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: clamp(36px,6vw,64px); align-items: center;">
+      <div style="text-align: left;">
+        <div style="font-size: 14px; font-weight: 500; color: #ffffff; opacity: .68; margin-bottom: 22px; letter-spacing: .01em;">동네 사장님과 중소기업을 위한 마케팅 파트너</div>
+        <h1 style="font-size: clamp(32px,5.4vw,60px); font-weight: 600; line-height: 1.18; color: #ffffff; margin: 0 0 24px; letter-spacing: normal;">작은 기업의 큰 성장,<br>JYS마케팅이 함께합니다</h1>
+        <p style="font-size: clamp(16px,2vw,19px); line-height: 1.7; color: #ffffff; opacity: .82; margin: 0 0 40px; max-width: 480px;">큰 예산 없이도 효과적인 마케팅.<br>기획부터 제작, 광고, 관리까지 한 번에 맡기세요.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button onClick="{{ goContact }}" style="height: 50px; padding: 0 32px; background: var(--accent,#3E6AE1); color: #fff; font-size: 15px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #3257c5;">무료 상담 신청</button>
+          <button onClick="{{ goServices }}" style="height: 50px; padding: 0 32px; background: #ffffff; color: #171A20; font-size: 15px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #e9e9ea;">서비스 살펴보기</button>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <img src="uploads/ing1.png" alt="JYS마케팅 대시보드 미리보기" style="width: 100%; display: block; border-radius: 16px; box-shadow: 0 30px 70px rgba(0,0,0,.4);" />
       </div>
     </div>
   </section>
@@ -338,7 +343,25 @@ class Component extends DCLogic {
           this.setState({ error: '이름(상호)과 연락처를 입력해 주세요.' });
           return;
         }
-        this.setState({ submitted: true, error: '' });
+        this.setState({ error: '' });
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: this.state.name,
+            phone: this.state.phone,
+            industry: this.state.industry,
+            message: this.state.message
+          })
+        })
+          .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+          .then((result) => {
+            if (!result.ok) throw new Error((result.data && result.data.error) || '신청 중 오류가 발생했어요.');
+            this.setState({ submitted: true, error: '' });
+          })
+          .catch((err) => {
+            this.setState({ error: err.message || '신청 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.' });
+          });
       },
       goHero: go('hero-top'),
       goServices: go('services'),

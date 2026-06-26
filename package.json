@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "start": "node local-server.js",
-    "dev": "node local-server.js"
+    "dev": "node local-server.js",
+    "ingest": "node scripts/ingest.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
   },
   "engines": {
     "node": ">=18"

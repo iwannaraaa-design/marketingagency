@@ -25,6 +25,7 @@ function loadEnvFile() {
 loadEnvFile();
 
 const { getChatReply } = await import('./lib/chat.js');
+const { saveLead } = await import('./lib/leads.js');
 
 const PORT = process.env.PORT || 3000;
 
@@ -87,6 +88,26 @@ const server = http.createServer(async (req, res) => {
       console.error('[/api/chat] error:', err);
       res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ error: '챗봇 응답 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.' }));
+    }
+    return;
+  }
+
+  if (req.method === 'POST' && req.url === '/api/lead') {
+    try {
+      const raw = await readBody(req);
+      const body = raw ? JSON.parse(raw) : {};
+      if (!body.name || !String(body.name).trim() || !body.phone || !String(body.phone).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: '이름(상호)과 연락처를 입력해 주세요.' }));
+        return;
+      }
+      await saveLead(body);
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (err) {
+      console.error('[/api/lead] error:', err);
+      res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: '상담 신청 저장 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.' }));
     }
     return;
   }

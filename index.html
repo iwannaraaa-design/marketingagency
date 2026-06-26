@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #ffffff; }
+  ::selection { background: rgba(62,106,225,0.18); }
+</style>
+</helmet>
+<div data-screen-label="JYS마케팅 랜딩 페이지" style="--accent: {{ accent }}; --card-radius: {{ cardRadius }}; font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif; color: #393C41; background: #ffffff; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden;">
+
+  <nav data-nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px,5vw,56px); background: transparent; border-bottom: 1px solid transparent; transition: background-color .33s ease, border-color .33s ease;">
+    <img data-wordmark src="uploads/logo.png" alt="JYS마케팅" onClick="{{ goHero }}" style="height: 28px; cursor: pointer;" />
+    <div style="display: flex; align-items: center; gap: clamp(16px,2.4vw,30px);">
+      <a data-navlink onClick="{{ goServices }}" style="font-size: 14px; font-weight: 500; color: #ffffff; cursor: pointer; transition: color .33s ease;">서비스</a>
+      <a data-navlink onClick="{{ goWhy }}" style="font-size: 14px; font-weight: 500; color: #ffffff; cursor: pointer; transition: color .33s ease;">강점</a>
+      <a data-navlink onClick="{{ goProcess }}" style="font-size: 14px; font-weight: 500; color: #ffffff; cursor: pointer; transition: color .33s ease;">프로세스</a>
+      <a data-navlink onClick="{{ goIndustries }}" style="font-size: 14px; font-weight: 500; color: #ffffff; cursor: pointer; transition: color .33s ease;">업종</a>
+      <button onClick="{{ goContact }}" style="height: 40px; padding: 0 20px; background: var(--accent,#3E6AE1); color: #fff; font-size: 14px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #3257c5;">무료 상담 신청</button>
+    </div>
+  </nav>
+
+  <section data-screen-label="히어로" style="position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 88px; background: #171A20 url('uploads/ing1.png') center center / cover no-repeat; overflow: hidden;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 18%, rgba(23,26,32,0) 40%, rgba(23,26,32,0.65) 100%);"></div>
+    <div style="position: relative; max-width: 880px;">
+      <div style="font-size: 14px; font-weight: 500; color: #ffffff; opacity: .68; margin-bottom: 22px; letter-spacing: .01em;">동네 사장님과 중소기업을 위한 마케팅 파트너</div>
+      <h1 style="font-size: clamp(36px,6.2vw,74px); font-weight: 600; line-height: 1.16; color: #ffffff; margin: 0 0 24px; letter-spacing: normal;">작은 기업의 큰 성장,<br>JYS마케팅이 함께합니다</h1>
+      <p style="font-size: clamp(16px,2vw,20px); line-height: 1.7; color: #ffffff; opacity: .82; margin: 0 auto 40px; max-width: 600px;">큰 예산 없이도 효과적인 마케팅.<br>기획부터 제작, 광고, 관리까지 한 번에 맡기세요.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button onClick="{{ goContact }}" style="height: 50px; padding: 0 32px; background: var(--accent,#3E6AE1); color: #fff; font-size: 15px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #3257c5;">무료 상담 신청</button>
+        <button onClick="{{ goServices }}" style="height: 50px; padding: 0 32px; background: #ffffff; color: #171A20; font-size: 15px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease;" style-hover="background: #e9e9ea;">서비스 살펴보기</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(96px,12vw,184px) clamp(24px,6vw,80px); max-width: 1020px; margin: 0 auto; text-align: center;">
+    <p data-reveal style="font-size: clamp(23px,3.3vw,42px); line-height: 1.5; font-weight: 500; color: #171A20; margin: 0; letter-spacing: normal;">“마케팅이 중요한 건 알지만,<br>어디서부터 시작해야 할지 모르겠다”는 사장님께.<br><span style="color: #8E8E8E;">화려한 보고서보다, 실제 매출과 고객 유입으로<br>이어지는 마케팅을 만듭니다.</span></p>
+  </section>
+
+  <section id="services" style="background: #F4F4F4; padding: clamp(88px,11vw,160px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div data-reveal style="max-width: 720px; margin: 0 0 clamp(40px,5vw,64px);">
+        <div style="font-size: 14px; font-weight: 500; color: var(--accent,#3E6AE1); margin-bottom: 14px;">핵심 서비스</div>
+        <h2 style="font-size: clamp(28px,4vw,48px); font-weight: 600; line-height: 1.24; color: #171A20; margin: 0; letter-spacing: normal;">필요한 마케팅, 전부 한 곳에서</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 18px;">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
+          <div data-reveal style="background: #ffffff; border-radius: var(--card-radius,12px); padding: 34px 30px;">
+            <div style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: var(--accent,#3E6AE1); margin-bottom: 16px;">{{ s.no }}</div>
+            <h3 style="font-size: 20px; font-weight: 600; color: #171A20; margin: 0 0 10px; letter-spacing: normal;">{{ s.title }}</h3>
+            <p style="font-size: 15px; line-height: 1.72; color: #5C5E62; margin: 0;">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" style="padding: clamp(88px,11vw,160px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1080px; margin: 0 auto;">
+      <div data-reveal style="max-width: 720px; margin: 0 0 clamp(36px,4.5vw,56px);">
+        <div style="font-size: 14px; font-weight: 500; color: var(--accent,#3E6AE1); margin-bottom: 14px;">왜 JYS마케팅일까요?</div>
+        <h2 style="font-size: clamp(28px,4vw,48px); font-weight: 600; line-height: 1.24; color: #171A20; margin: 0; letter-spacing: normal;">큰 대행사가 채워주지 못하는 것들</h2>
+      </div>
+      <div style="border-bottom: 1px solid #EEEEEE;">
+        <sc-for list="{{ diffs }}" as="d" hint-placeholder-count="5">
+          <div data-reveal style="display: grid; grid-template-columns: 88px 1fr; gap: clamp(16px,3vw,40px); align-items: baseline; padding: clamp(26px,3vw,38px) 0; border-top: 1px solid #EEEEEE;">
+            <div style="font-size: clamp(28px,4vw,46px); font-weight: 500; color: #D0D1D2; letter-spacing: normal;">{{ d.no }}</div>
+            <div>
+              <h3 style="font-size: clamp(19px,2.2vw,24px); font-weight: 600; color: #171A20; margin: 0 0 8px; letter-spacing: normal;">{{ d.title }}</h3>
+              <p style="font-size: 16px; line-height: 1.72; color: #5C5E62; margin: 0; max-width: 640px;">{{ d.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="background: #F4F4F4; padding: clamp(88px,11vw,160px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div data-reveal style="max-width: 720px; margin: 0 0 clamp(40px,5vw,64px);">
+        <div style="font-size: 14px; font-weight: 500; color: var(--accent,#3E6AE1); margin-bottom: 14px;">진행 프로세스</div>
+        <h2 style="font-size: clamp(28px,4vw,48px); font-weight: 600; line-height: 1.24; color: #171A20; margin: 0; letter-spacing: normal;">상담부터 지속 관리까지, 5단계</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 20px;">
+        <sc-for list="{{ steps }}" as="p" hint-placeholder-count="5">
+          <div data-reveal style="background: #ffffff; border-radius: var(--card-radius,12px); padding: 32px 26px; min-height: 196px; display: flex; flex-direction: column;">
+            <div style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; color: var(--accent,#3E6AE1); margin-bottom: 18px;">{{ p.no }}</div>
+            <h3 style="font-size: 18px; font-weight: 600; color: #171A20; margin: 0 0 10px; letter-spacing: normal;">{{ p.title }}</h3>
+            <p style="font-size: 14px; line-height: 1.7; color: #5C5E62; margin: 0;">{{ p.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="industries" style="padding: clamp(88px,11vw,160px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div data-reveal style="max-width: 720px; margin: 0 0 clamp(40px,5vw,64px);">
+        <div style="font-size: 14px; font-weight: 500; color: var(--accent,#3E6AE1); margin-bottom: 14px;">주요 타겟 업종</div>
+        <h2 style="font-size: clamp(28px,4vw,48px); font-weight: 600; line-height: 1.24; color: #171A20; margin: 0; letter-spacing: normal;">이런 사장님들과 함께하고 있어요</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 18px;">
+        <sc-for list="{{ industries }}" as="i" hint-placeholder-count="6">
+          <div data-reveal style="background: #F4F4F4; border-radius: var(--card-radius,12px); padding: 30px 30px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 19px; font-weight: 600; color: #171A20; letter-spacing: normal;">{{ i.cat }}</div>
+            <div style="font-size: 14px; color: #8E8E8E;">{{ i.name }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="ceo" style="background: #F4F4F4; padding: clamp(88px,11vw,160px) clamp(24px,6vw,80px);">
+    <div data-reveal style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: clamp(36px,5vw,72px); align-items: center;">
+      <div style="position: relative; aspect-ratio: 1 / 1; border-radius: var(--card-radius,12px); background: repeating-linear-gradient(135deg, #e7e7e7 0 12px, #dedede 12px 24px); overflow: hidden;">
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: #8E8E8E;">[ 대표 사진 ]</div>
+      </div>
+      <div>
+        <div style="font-size: 14px; font-weight: 500; color: var(--accent,#3E6AE1); margin-bottom: 20px;">대표 인사말</div>
+        <p style="font-size: clamp(20px,2.5vw,30px); line-height: 1.5; font-weight: 500; color: #171A20; margin: 0 0 26px; letter-spacing: normal;">“화려한 보고서보다, 실제 매출과 고객 유입으로 이어지는 마케팅. JYS마케팅이 함께 만들어가겠습니다.”</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #5C5E62; margin: 0 0 22px;">많은 사장님들이 “마케팅이 중요한 건 알지만 어디서부터 시작해야 할지 모르겠다”고 말씀하십니다. JYS마케팅은 그 고민을 가장 가까이에서 함께 풀어갑니다.</p>
+        <div style="font-size: 15px; font-weight: 600; color: #171A20;">JYS마케팅 대표</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding: clamp(88px,11vw,168px) clamp(24px,6vw,80px); background: #171A20;">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="margin-bottom: clamp(36px,4.5vw,52px);">
+        <div style="font-size: 14px; font-weight: 500; color: #ffffff; opacity: .6; margin-bottom: 16px;">무료 상담</div>
+        <h2 style="font-size: clamp(30px,4.4vw,54px); font-weight: 600; line-height: 1.22; color: #ffffff; margin: 0 0 18px; letter-spacing: normal;">지금, 무료 상담을 신청하세요</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: #ffffff; opacity: .72; margin: 0;">업종과 예산만 알려주시면, 맞춤 마케팅 플랜을 제안해 드립니다.<br>부담 없이 편하게 문의하세요.</p>
+      </div>
+
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form data-reveal onSubmit="{{ onSubmit }}" style="background: #ffffff; border-radius: var(--card-radius,12px); padding: clamp(28px,4vw,44px); text-align: left; display: flex; flex-direction: column; gap: 18px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 18px;">
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 13px; font-weight: 500; color: #393C41;">이름 / 상호</span>
+              <input value="{{ name }}" onChange="{{ onName }}" placeholder="예) 홍길동 / 길동이네 카페" style="height: 48px; padding: 0 14px; background: #fff; border: 1px solid #D0D1D2; border-radius: 4px; font-size: 15px; font-family: inherit; color: #171A20; outline: none; transition: border-color .33s ease;" style-focus="border-color: var(--accent,#3E6AE1);" />
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 13px; font-weight: 500; color: #393C41;">연락처</span>
+              <input value="{{ phone }}" onChange="{{ onPhone }}" placeholder="예) 010-1234-5678" style="height: 48px; padding: 0 14px; background: #fff; border: 1px solid #D0D1D2; border-radius: 4px; font-size: 15px; font-family: inherit; color: #171A20; outline: none; transition: border-color .33s ease;" style-focus="border-color: var(--accent,#3E6AE1);" />
+            </label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 500; color: #393C41;">업종</span>
+            <select value="{{ industry }}" onChange="{{ onIndustry }}" style="height: 48px; padding: 0 14px; background: #fff; border: 1px solid #D0D1D2; border-radius: 4px; font-size: 15px; font-family: inherit; color: #171A20; outline: none; transition: border-color .33s ease;" style-focus="border-color: var(--accent,#3E6AE1);">
+              <option value="">업종을 선택해 주세요</option>
+              <option value="외식업">외식업 (카페·식당·베이커리)</option>
+              <option value="뷰티·미용">뷰티·미용 (미용실·네일·피부)</option>
+              <option value="교육">교육 (학원·공부방·과외)</option>
+              <option value="의료·건강">의료·건강 (병의원·한의원·약국)</option>
+              <option value="온라인 커머스">온라인 커머스 (쇼핑몰·스마트스토어)</option>
+              <option value="제조·유통">제조·유통 (소규모 제조·유통)</option>
+              <option value="기타">기타</option>
+            </select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 500; color: #393C41;">문의 내용 <span style="color: #8E8E8E; font-weight: 400;">(선택)</span></span>
+            <textarea value="{{ message }}" onChange="{{ onMessage }}" placeholder="현재 고민이나 목표를 자유롭게 적어주세요." rows="4" style="padding: 14px; background: #fff; border: 1px solid #D0D1D2; border-radius: 4px; font-size: 15px; font-family: inherit; color: #171A20; outline: none; resize: vertical; line-height: 1.6; transition: border-color .33s ease;" style-focus="border-color: var(--accent,#3E6AE1);"></textarea>
+          </label>
+          <sc-if value="{{ error }}" hint-placeholder-val="">
+            <div style="font-size: 14px; color: #C2410C;">{{ error }}</div>
+          </sc-if>
+          <button type="submit" style="height: 52px; background: var(--accent,#3E6AE1); color: #fff; font-size: 16px; font-weight: 500; font-family: inherit; border: none; border-radius: 4px; cursor: pointer; transition: background-color .33s ease; margin-top: 4px;" style-hover="background: #3257c5;">무료 상담 신청하기</button>
+          <p style="font-size: 13px; color: #8E8E8E; text-align: center; margin: 2px 0 0;">신청 후 영업일 기준 1일 이내에 연락드립니다.</p>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="">
+        <div data-reveal style="background: #ffffff; border-radius: var(--card-radius,12px); padding: clamp(44px,6vw,68px) clamp(28px,4vw,44px); text-align: center;">
+          <div style="width: 56px; height: 56px; margin: 0 auto 22px; border-radius: 50%; background: var(--accent,#3E6AE1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px;">✓</div>
+          <h3 style="font-size: clamp(22px,3vw,30px); font-weight: 600; color: #171A20; margin: 0 0 12px; letter-spacing: normal;">신청이 접수되었습니다</h3>
+          <p style="font-size: 16px; line-height: 1.7; color: #5C5E62; margin: 0;">소중한 문의 감사합니다.<br>빠르게 확인하고 연락드릴게요!</p>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <footer style="padding: clamp(56px,7vw,88px) clamp(24px,6vw,80px) 48px; border-top: 1px solid #EEEEEE; background: #ffffff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 36px;">
+      <div>
+        <img src="uploads/logo.png" alt="JYS마케팅" style="height: 26px; margin-bottom: 12px;" />
+        <p style="font-size: 14px; line-height: 1.7; color: #8E8E8E; margin: 0; max-width: 260px;">작은 기업의 큰 성장, JYS마케팅이 함께합니다.</p>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: #393C41; margin-bottom: 14px;">서비스</div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <a onClick="{{ goServices }}" style="font-size: 14px; color: #5C5E62; cursor: pointer;">SNS·검색 광고</a>
+          <a onClick="{{ goServices }}" style="font-size: 14px; color: #5C5E62; cursor: pointer;">콘텐츠·브랜딩</a>
+          <a onClick="{{ goServices }}" style="font-size: 14px; color: #5C5E62; cursor: pointer;">로컬·컨설팅</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: #393C41; margin-bottom: 14px;">바로가기</div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <a onClick="{{ goWhy }}" style="font-size: 14px; color: #5C5E62; cursor: pointer;">강점</a>
+          <a onClick="{{ goProcess }}" style="font-size: 14px; color: #5C5E62; cursor: pointer;">프로세스</a>
+          <a onClick="{{ goContact }}" style="font-size: 14px; color: #5C5E62; cursor: pointer;">무료 상담</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: #393C41; margin-bottom: 14px;">연락처</div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <div style="font-size: 14px; color: #5C5E62;">전화 <span style="color: #B0B0B0;">준비 중</span></div>
+          <div style="font-size: 14px; color: #5C5E62;">이메일 <span style="color: #B0B0B0;">준비 중</span></div>
+          <div style="font-size: 14px; color: #5C5E62;">카카오톡 채널 <span style="color: #B0B0B0;">준비 중</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 44px auto 0; padding-top: 24px; border-top: 1px solid #EEEEEE; font-size: 13px; color: #B0B0B0;">© 2026 JYS마케팅. All rights reserved.</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#3E6AE1&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#3E6AE1&quot;, &quot;#171A20&quot;, &quot;#0E7C66&quot;, &quot;#C2410C&quot;]}, &quot;roundedCards&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;showReveal&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { name: '', phone: '', industry: '', message: '', submitted: false, error: '' };
+
+  componentDidMount() {
+    const go = (id, off) => () => {
+      const el = document.getElementById(id);
+      if (id === 'hero-top' || !el) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      const top = el.getBoundingClientRect().top + window.pageYOffset - (off == null ? 56 : off);
+      window.scrollTo({ top, behavior: 'smooth' });
+    };
+    this._go = go;
+
+    // Nav frosting on scroll
+    const nav = document.querySelector('[data-nav]');
+    const wordmark = document.querySelector('[data-wordmark]');
+    const links = Array.prototype.slice.call(document.querySelectorAll('[data-navlink]'));
+    const onScroll = () => {
+      const s = window.pageYOffset > 48;
+      if (nav) {
+        nav.style.background = s ? 'rgba(255,255,255,0.82)' : 'transparent';
+        nav.style.backdropFilter = s ? 'saturate(180%) blur(20px)' : 'none';
+        nav.style.webkitBackdropFilter = s ? 'saturate(180%) blur(20px)' : 'none';
+        nav.style.borderBottom = s ? '1px solid #EEEEEE' : '1px solid transparent';
+      }
+      if (wordmark) wordmark.style.color = s ? '#171A20' : '#ffffff';
+      links.forEach(function (l) { l.style.color = s ? '#171A20' : '#ffffff'; });
+    };
+    this._onScroll = onScroll;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Scroll reveal
+    const show = this.props.showReveal == null ? true : this.props.showReveal;
+    if (show) {
+      const els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+      els.forEach(function (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+        el.style.transition = 'opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1)';
+      });
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+      this._io = io;
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+  }
+
+  renderVals() {
+    const go = this._go || (() => () => {});
+    return {
+      accent: this.props.accentColor || '#3E6AE1',
+      cardRadius: (this.props.roundedCards == null ? true : this.props.roundedCards) ? '12px' : '2px',
+      services: [
+        { no: '01', title: 'SNS 마케팅', desc: '인스타그램·페이스북·블로그 운영 대행, 릴스·쇼츠 숏폼 콘텐츠 기획·제작' },
+        { no: '02', title: '검색 광고 (SEM)', desc: '네이버 파워링크·플레이스 광고, 구글 애즈(Google Ads) 운영' },
+        { no: '03', title: '콘텐츠 제작', desc: '제품·매장 사진·영상 촬영, 상세페이지·카드뉴스 제작' },
+        { no: '04', title: '브랜딩 & 디자인', desc: '로고·CI/BI·명함·메뉴판 등 기본 브랜딩, 매장·브랜드 아이덴티티 정립' },
+        { no: '05', title: '온라인 평판 관리', desc: '리뷰·평점 관리, 부정 게시물 대응 컨설팅' },
+        { no: '06', title: '로컬 마케팅', desc: '네이버 지도·플레이스 최적화, 동네 상권 타겟 광고' },
+        { no: '07', title: '인플루언서 & 체험단', desc: '마이크로 인플루언서 매칭, 체험단 기획·운영' },
+        { no: '08', title: '컨설팅 & 교육', desc: '사장님 직접 운영을 위한 SNS·광고 교육, 1:1 마케팅 전략 컨설팅' }
+      ],
+      diffs: [
+        { no: '01', title: '중소기업·소상공인 맞춤 가격', desc: '대형 대행사 대비 합리적인 비용 구조. 작은 예산에서도 부담 없이 시작할 수 있습니다.' },
+        { no: '02', title: '데이터 기반 성과 관리', desc: '감이 아닌 데이터로 광고 효율을 분석하고 꾸준히 개선합니다.' },
+        { no: '03', title: '기획부터 관리까지 원스톱', desc: '기획·제작·광고·관리를 한 번에. 여러 업체를 찾아다닐 필요가 없습니다.' },
+        { no: '04', title: '지역 밀착형 마케팅', desc: '상권과 업종 특성을 반영한 현장 중심 전략으로 동네 손님을 모읍니다.' },
+        { no: '05', title: '소통 중심 운영', desc: '정기 리포트와 빠른 피드백으로 신뢰를 쌓아갑니다.' }
+      ],
+      steps: [
+        { no: '01', title: '상담 및 진단', desc: '업종·예산·목표를 함께 파악합니다.' },
+        { no: '02', title: '전략 수립', desc: '맞춤형 마케팅 플랜을 설계합니다.' },
+        { no: '03', title: '실행', desc: '콘텐츠 제작과 광고를 집행합니다.' },
+        { no: '04', title: '성과 분석', desc: '월간·주간 리포트를 제공합니다.' },
+        { no: '05', title: '지속 관리', desc: '데이터 기반으로 전략을 개선합니다.' }
+      ],
+      industries: [
+        { cat: '외식업', name: '카페 · 식당 · 베이커리' },
+        { cat: '뷰티 · 미용', name: '미용실 · 네일샵 · 피부관리' },
+        { cat: '교육', name: '학원 · 공부방 · 과외' },
+        { cat: '의료 · 건강', name: '병의원 · 한의원 · 약국' },
+        { cat: '온라인 커머스', name: '쇼핑몰 · 스마트스토어' },
+        { cat: '제조 · 유통', name: '소규모 제조 · 유통 중소기업' }
+      ],
+      name: this.state.name,
+      phone: this.state.phone,
+      industry: this.state.industry,
+      message: this.state.message,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      error: this.state.error,
+      onName: (e) => this.setState({ name: e.target.value }),
+      onPhone: (e) => this.setState({ phone: e.target.value }),
+      onIndustry: (e) => this.setState({ industry: e.target.value }),
+      onMessage: (e) => this.setState({ message: e.target.value }),
+      onSubmit: (e) => {
+        e.preventDefault();
+        if (!this.state.name.trim() || !this.state.phone.trim()) {
+          this.setState({ error: '이름(상호)과 연락처를 입력해 주세요.' });
+          return;
+        }
+        this.setState({ submitted: true, error: '' });
+      },
+      goHero: go('hero-top'),
+      goServices: go('services'),
+      goWhy: go('why'),
+      goProcess: go('process'),
+      goIndustries: go('industries'),
+      goContact: go('contact')
+    };
+  }
+}
+</script>
+<script src="./chatbot.js" defer></script>
+</body>
+</html>
